@@ -49,6 +49,9 @@ const StartGameScreen = (props) => {
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
             <View style={styles.screen}>
                 <Text style={styles.title}>Start a New Game!</Text>
+                <Card style={styles.gameDescription}>
+                    <Text>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</Text>
+                </Card>
                 <Card style={styles.inputContainer}>
                     <Text>Select a number</Text>
                     <Input 
@@ -109,6 +112,10 @@ const styles = StyleSheet.create({
     summaryContainer: {
         alignItems: 'center',
         marginTop: 20,
+    },
+    gameDescription: {
+        width: '80%',
+        marginBottom: 10,
     }
 });
 
