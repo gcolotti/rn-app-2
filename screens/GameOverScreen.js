@@ -3,7 +3,7 @@ import { View, Button, Text, StyleSheet } from 'react-native';
 
 const GameOverScreen = props => {
     return (
-        <View>
+        <View style={styles.screen}>
             <Text>The Game is Over!</Text>
         </View>
     );
