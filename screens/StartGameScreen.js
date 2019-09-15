@@ -50,7 +50,7 @@ const StartGameScreen = (props) => {
             <View style={styles.screen}>
                 <Text style={styles.title}>Start a New Game!</Text>
                 <Card style={styles.gameDescription}>
-                    <Text>Pick a number and let the computer guess it. Once you pick a number, you need to tell the computer if your number is Lower o Higher than the guessed.</Text>
+                    <Text>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</Text>
                 </Card>
                 <Card style={styles.inputContainer}>
                     <Text>Select a number</Text>
