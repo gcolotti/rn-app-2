@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import { View, Button, Text, StyleSheet, Image } from 'react-native';
 import Colors from './../constants/colors';
 import NiceButton from './../components/NiceButton';
+import NiceText from './../components/NiceText';
 
 const GameOverScreen = props => {
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}>The Game is Over!</Text>
-            <Text style={styles.text}>Number of rounds: {props.roundsNumber}</Text>
-            <Text style={styles.text}>Number was: {props.userNumber}</Text>
+            <NiceText style={styles.text}>The Game is Over!</NiceText>
+            <View style={styles.imgContainer}>
+                <Image
+                    source={require('./../assets/gameover.jpg')}
+                />
+            </View>
+            <NiceText style={styles.text}>Rounds: {props.roundsNumber} - Number: {props.userNumber}</NiceText>
             <View style={styles.btnContainer}>
                 <NiceButton onPress={props.onNewGame}>New Game</NiceButton>
             </View>
@@ -24,11 +29,21 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        fontFamily: 'ubuntu-regular',
     },
     btnContainer: {
         width: '80%',
         marginTop: 20,
+    },
+    imgContainer: {
+        width: 300,
+        height: 300,
+        alignItems: 'center',
+        borderRadius: 150,
+        borderStyle: 'solid',
+        borderColor: '#000',
+        borderWidth: 1,
+        overflow: 'hidden',
+        marginVertical: 20
     }
 });
 
