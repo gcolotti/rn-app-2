@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import NumberContainer from './../components/NumberContainer';
 import Card from './../components/Card';
 import NiceButton from '../components/NiceButton';
+import { AntDesign } from '@expo/vector-icons';
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
-    if(rndNum === exclude) {
+    if (rndNum === exclude) {
         return generateRandomBetween(min, max, exclude);
     }
     return rndNum;
@@ -23,25 +24,25 @@ const GameScreen = props => {
     const { userChoice, onGameOver } = props;
 
     useEffect(() => {
-        if(currentGuess === userChoice) {
+        if (currentGuess === userChoice) {
             onGameOver(rounds);
         }
     }, [currentGuess, userChoice, onGameOver]);
 
     const nextGuessHandler = (direction) => {
-        if((direction === 'lower' && currentGuess < props.userChoice) || (direction === 'higher' && currentGuess > props.userChoice)) {
+        if ((direction === 'lower' && currentGuess < props.userChoice) || (direction === 'higher' && currentGuess > props.userChoice)) {
             Alert.alert('Don\'t lie!', 'You know that this is wrong...',
-            [{text: 'Sorry!', style: 'cancel'}]);
+                [{ text: 'Sorry!', style: 'cancel' }]);
             return;
         }
-        if(direction === 'lower') {
+        if (direction === 'lower') {
             currentHigher.current = currentGuess;
         } else {
             currentLower.current = currentGuess;
         }
         const nextNumber = generateRandomBetween(currentLower.current, currentHigher.current, currentGuess);
         setCurrentGuess(nextNumber);
-        setRounds(curRounds => curRounds +1);
+        setRounds(curRounds => curRounds + 1);
     };
 
     return (
@@ -50,12 +51,16 @@ const GameScreen = props => {
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.btnContainer}>
                 <View style={styles.btn}>
-                    <NiceButton onPress={nextGuessHandler.bind(this, 'lower')}>LOWER</NiceButton>
+                    <NiceButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                        <AntDesign style={styles.icon} name={'caretdown'} />
+                    </NiceButton>
                 </View>
                 <View style={styles.btn}>
-                    <NiceButton onPress={nextGuessHandler.bind(this, 'higher')}>HIGHER</NiceButton>
+                    <NiceButton onPress={nextGuessHandler.bind(this, 'higher')}>
+                        <AntDesign style={styles.icon} name={'caretup'} />
+                    </NiceButton>
                 </View>
-                
+
             </Card>
         </View>
     );
@@ -76,6 +81,9 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: 100,
+    },
+    icon: {
+        fontSize: 20
     }
 });
 
