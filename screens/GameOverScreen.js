@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Button, Text, StyleSheet, Image } from 'react-native';
-import Colors from './../constants/colors';
+import { View, StyleSheet, Image } from 'react-native';
 import NiceButton from './../components/NiceButton';
 import NiceText from './../components/NiceText';
 
