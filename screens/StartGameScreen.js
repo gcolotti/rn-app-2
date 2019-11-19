@@ -5,6 +5,7 @@ import Colors from './../constants/colors';
 import Input from './../components/Input';
 import NumberContainer from '../components/NumberContainer';
 import NiceText from '../components/NiceText';
+import NiceButton from '../components/NiceButton';
 
 const StartGameScreen = (props) => {
 
@@ -41,7 +42,9 @@ const StartGameScreen = (props) => {
             <Card style={styles.summaryContainer}>
                 <Text>You selected</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button color={Colors.primary} title={'Start Game!'} onPress={() => {props.onStartGame(selectedNumber)}} />
+                <View style={styles.startButton}>
+                    <NiceButton onPress={() => {props.onStartGame(selectedNumber)}}>START!</NiceButton>
+                </View>
             </Card>
         );
     };
@@ -49,8 +52,8 @@ const StartGameScreen = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
             <View style={styles.screen}>
-                <NiceText style={styles.title}>Start a New Game!</NiceText>
                 <Card style={styles.gameDescription}>
+                <NiceText style={styles.title}>How to play</NiceText>
                     <NiceText>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</NiceText>
                 </Card>
                 <Card style={styles.card}>
@@ -69,10 +72,10 @@ const StartGameScreen = (props) => {
                     </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btn}>
-                            <Button color={Colors.secondary} title={'Reset'} onPress={resetInputHandler} />
+                            <NiceButton style={styles.primary} onPress={resetInputHandler}>Reset</NiceButton>
                         </View>
                         <View style={styles.btn}>
-                            <Button color={Colors.primary} title={'Confirm'} onPress={confirmInputHandler} />
+                            <NiceButton style={styles.secondary} onPress={confirmInputHandler}>Confirm</NiceButton>
                         </View>
                     </View>
                 </Card>
@@ -92,9 +95,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        textAlign: 'center'
     },
     card: {
-        width: 300,
+        width: '80%',
         maxWidth: '80%',
         alignItems: 'center',
     },
@@ -109,7 +113,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
     },
     btn: {
-        width: 100,
+        width: '48%',
+    },
+    primary: {
+        backgroundColor: Colors.primary,
+    },
+    secondary: {
+        backgroundColor: Colors.secondary,
     },
     input: {
         width: 50,
@@ -121,10 +131,14 @@ const styles = StyleSheet.create({
     summaryContainer: {
         alignItems: 'center',
         marginTop: 20,
+        width: '80%'
     },
     gameDescription: {
         width: '80%',
         marginBottom: 10,
+    },
+    startButton: {
+        width: '80%',
     }
 });
 
