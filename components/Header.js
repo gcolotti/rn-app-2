@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         color: 'white',
         fontSize: 30,
-        fontWeight: 'bold',
-        fontFamily: 'Roboto',
+        fontFamily: 'ubuntu-bold'
     }
 });
 

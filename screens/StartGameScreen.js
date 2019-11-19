@@ -4,6 +4,8 @@ import Card from './../components/Card';
 import Colors from './../constants/colors';
 import Input from './../components/Input';
 import NumberContainer from '../components/NumberContainer';
+import NiceText from '../components/NiceText';
+import NiceButton from '../components/NiceButton';
 
 const StartGameScreen = (props) => {
 
@@ -19,7 +21,7 @@ const StartGameScreen = (props) => {
         setEnteredValue('');
         setConfirmed(false);
     };
-
+    
     const confirmInputHandler = () => {
         const chosenNumber = parseInt(enteredValue);
         if(isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
@@ -40,7 +42,9 @@ const StartGameScreen = (props) => {
             <Card style={styles.summaryContainer}>
                 <Text>You selected</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button color={Colors.primary} title={'Start Game!'} onPress={() => {props.onStartGame(selectedNumber)}} />
+                <View style={styles.startButton}>
+                    <NiceButton onPress={() => {props.onStartGame(selectedNumber)}}>START!</NiceButton>
+                </View>
             </Card>
         );
     };
@@ -48,28 +52,30 @@ const StartGameScreen = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game!</Text>
                 <Card style={styles.gameDescription}>
-                    <Text>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</Text>
+                <NiceText style={styles.title}>How to play</NiceText>
+                    <NiceText>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</NiceText>
                 </Card>
-                <Card style={styles.inputContainer}>
-                    <Text>Select a number</Text>
-                    <Input 
-                        style={styles.input}
-                        blurOnSubmit
-                        autoCapitalize={'none'}
-                        autoCorrect={false}
-                        keyboardType={'number-pad'}
-                        maxLength={2}
-                        onChangeText={numberInputHandler}
-                        value={enteredValue}
-                    />
+                <Card style={styles.card}>
+                    <NiceText>Select a number</NiceText>
+                    <View style={styles.inputContainer}>
+                        <Input 
+                            style={styles.input}
+                            blurOnSubmit
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            keyboardType={'number-pad'}
+                            maxLength={2}
+                            onChangeText={numberInputHandler}
+                            value={enteredValue}
+                        />
+                    </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btn}>
-                            <Button color={Colors.secondary} title={'Reset'} onPress={resetInputHandler} />
+                            <NiceButton style={styles.primary} onPress={resetInputHandler}>Reset</NiceButton>
                         </View>
                         <View style={styles.btn}>
-                            <Button color={Colors.primary} title={'Confirm'} onPress={confirmInputHandler} />
+                            <NiceButton style={styles.secondary} onPress={confirmInputHandler}>Confirm</NiceButton>
                         </View>
                     </View>
                 </Card>
@@ -89,11 +95,15 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        textAlign: 'center'
     },
-    inputContainer: {
-        width: 300,
+    card: {
+        width: '80%',
         maxWidth: '80%',
         alignItems: 'center',
+    },
+    inputContainer: {
+        marginVertical: 20,
     },
     btnContainer: {
         flexDirection: 'row',
@@ -103,19 +113,32 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
     },
     btn: {
-        width: 100,
+        width: '48%',
+    },
+    primary: {
+        backgroundColor: Colors.primary,
+    },
+    secondary: {
+        backgroundColor: Colors.secondary,
     },
     input: {
         width: 50,
         textAlign: 'center',
+        fontFamily: 'ubuntu-bold',
+        fontSize: 30,
+        color: Colors.primary
     },
     summaryContainer: {
         alignItems: 'center',
         marginTop: 20,
+        width: '80%'
     },
     gameDescription: {
         width: '80%',
         marginBottom: 10,
+    },
+    startButton: {
+        width: '80%',
     }
 });
 
