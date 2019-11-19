@@ -4,6 +4,7 @@ import Card from './../components/Card';
 import Colors from './../constants/colors';
 import Input from './../components/Input';
 import NumberContainer from '../components/NumberContainer';
+import NiceText from '../components/NiceText';
 
 const StartGameScreen = (props) => {
 
@@ -48,22 +49,24 @@ const StartGameScreen = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game!</Text>
+                <NiceText style={styles.title}>Start a New Game!</NiceText>
                 <Card style={styles.gameDescription}>
-                    <Text>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</Text>
+                    <NiceText>Pick a number and let the computer guess it. Once the game started, you need to tell the computer if your number is Lower o Higher than the guessed.</NiceText>
                 </Card>
-                <Card style={styles.inputContainer}>
-                    <Text>Select a number</Text>
-                    <Input 
-                        style={styles.input}
-                        blurOnSubmit
-                        autoCapitalize={'none'}
-                        autoCorrect={false}
-                        keyboardType={'number-pad'}
-                        maxLength={2}
-                        onChangeText={numberInputHandler}
-                        value={enteredValue}
-                    />
+                <Card style={styles.card}>
+                    <NiceText>Select a number</NiceText>
+                    <View style={styles.inputContainer}>
+                        <Input 
+                            style={styles.input}
+                            blurOnSubmit
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            keyboardType={'number-pad'}
+                            maxLength={2}
+                            onChangeText={numberInputHandler}
+                            value={enteredValue}
+                        />
+                    </View>
                     <View style={styles.btnContainer}>
                         <View style={styles.btn}>
                             <Button color={Colors.secondary} title={'Reset'} onPress={resetInputHandler} />
@@ -90,10 +93,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginVertical: 10,
     },
-    inputContainer: {
+    card: {
         width: 300,
         maxWidth: '80%',
         alignItems: 'center',
+    },
+    inputContainer: {
+        marginVertical: 20,
     },
     btnContainer: {
         flexDirection: 'row',
@@ -108,6 +114,9 @@ const styles = StyleSheet.create({
     input: {
         width: 50,
         textAlign: 'center',
+        fontFamily: 'ubuntu-bold',
+        fontSize: 30,
+        color: Colors.primary
     },
     summaryContainer: {
         alignItems: 'center',
