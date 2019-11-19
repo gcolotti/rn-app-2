@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Button, Text, StyleSheet } from 'react-native';
 import Colors from './../constants/colors';
+import NiceButton from './../components/NiceButton';
 
 const GameOverScreen = props => {
     return (
@@ -9,7 +10,7 @@ const GameOverScreen = props => {
             <Text style={styles.text}>Number of rounds: {props.roundsNumber}</Text>
             <Text style={styles.text}>Number was: {props.userNumber}</Text>
             <View style={styles.btnContainer}>
-                <Button color={Colors.primary}title={'New Game'} onPress={props.onNewGame} />
+                <NiceButton onPress={props.onNewGame}>New Game</NiceButton>
             </View>
         </View>
     );
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
+        fontFamily: 'ubuntu-regular',
     },
     btnContainer: {
         width: '80%',
